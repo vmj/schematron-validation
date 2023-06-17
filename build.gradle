@@ -11,3 +11,19 @@ java {
 application {
     mainClass = 'fi.linuxbox.schematron.validation.Main'
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://central.sonatype.com/artifact/name.dmaus.schxslt/java
+    implementation 'name.dmaus.schxslt:java:3.1.1'
+
+    // schxslt:java has a transitive dependency to SLF4J (via xmlresolver).
+    // We need to have some logging backend.
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.25'
+
+    // We might as well use SLF4J ourselves, too, then.
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+}
