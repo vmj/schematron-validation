@@ -1,0 +1,34 @@
+= Minimal Java Gradle Project
+
+== Development and Testing
+
+Run the application during development (rebuilding if needed):
+
+  ./gradlew run  # on Windows, you would use the gradlew.bat instead
+
+Install a distribution locally, for testing the distribution package:
+
+  ./gradlew installDist
+
+Now you can run `build/install/schematron-validation/bin/schematron-validation` or,
+if on Windows, `build/install/schematron-validation/bin/schematron-validation.bat`.
+
+== Deployment
+
+Build TAR and ZIP distributions for actual distribution:
+
+  ./gradlew assembleDist
+
+The distributions are in `build/distributions/`.  You can unpack either of them
+on deployment site, assuming there's Java 17 or newer installed.
+They contain the same files that you can see in `build/install/schematron-validation`
+after running the `installDist` Gradle task.
+
+Sometimes all you need is a JAR:
+
+  ./gradlew jar
+
+The JAR is in `build/libs/schematron-validation-0.1.0.jar`.
+It can be run by (again, assuming Java 17 or newer is on `PATH`):
+
+  java -cp build/libs/schematron-validation-0.1.0.jar fi.linuxbox.schematron.validation.Main
